@@ -35,7 +35,7 @@ etcd:
   # It is recommended not to change this parameter if there is no specific reason.
   kvSubPath: kv
   log:
-    level: debug # Only supports debug, info, warn, error, panic, or fatal. Default 'info'.
+    level: info # Only supports debug, info, warn, error, panic, or fatal. Default 'info'.
     # path is one of:
     #  - "default" as os.Stderr,
     #  - "stderr" as os.Stderr,
@@ -150,7 +150,7 @@ minio:
   # Custom endpoint for fetch IAM role credentials. when useIAM is true & cloudProvider is "aws".
   # Leave it empty if you want to use AWS default endpoint
   iamEndpoint: 
-  logLevel: fatal # Log level for aws sdk log. Supported level: debug off, fatal, error, warn, info, debug, trace
+  logLevel: fatal # Log level for aws sdk log. Supported level:  off, fatal, error, warn, info, debug, trace
   region:  # Specify minio storage system location region
   useVirtualHost: false # Whether use virtual host mode for bucket
   requestTimeoutMs: 10000 # minio timeout for request time in milliseconds
@@ -627,8 +627,8 @@ dataCoord:
     indexBasedCompaction: true
     # compaction task prioritizer, options: [default, level, mix].
     # default is FIFO.
-    # level is prioritized by level: debug0 compactions first, then mix compactions, then clustering compactions.
-    # mix is prioritized by level: debug compactions first, then L0 compactions, then clustering compactions.
+    # level is prioritized by level: L0 compactions first, then mix compactions, then clustering compactions.
+    # mix is prioritized by level: mix compactions first, then L0 compactions, then clustering compactions.
     taskPrioritizer: default
     taskQueueCapacity: 100000 # compaction task queue size
     rpcTimeout: 10
@@ -832,7 +832,7 @@ msgChannel:
 log:
   # Milvus log level. Option: debug, info, warn, error, panic, and fatal.
   # It is recommended to use debug level under test and development environments, and info level in production environment.
-  level: debug
+  level: info
   file:
     # Root path to the log files.
     # The default value is set empty, indicating to output log files to standard output (stdout) and standard error (stderr).
@@ -847,7 +847,7 @@ log:
 
 grpc:
   log:
-    level: debug
+    level: WARNING
   gracefulStopTimeout: 3 # second, time to wait graceful stop finish
   client:
     compressionEnabled: false

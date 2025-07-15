@@ -19,7 +19,7 @@ def test_milvus_connection():
 
         # 1. Create a milvus client
         client = MilvusClient(
-            uri="http://localhost:19530",
+            uri="http://127.0.0.1:19530",
             token="root:Milvus"
         )
 

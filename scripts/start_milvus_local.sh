@@ -117,6 +117,9 @@ function setup_env() {
     export MINIO_ADDRESS=localhost:9000
     export PULSAR_ADDRESS=localhost:6650
     
+    # 禁用 streaming service 以避免连接问题
+    export MILVUS_STREAMING_SERVICE_ENABLED=0
+    
     # 设置Milvus数据目录
     export MILVUS_DATA_DIR="/tmp/milvus_data"
     export localStorage__path="$MILVUS_DATA_DIR"
@@ -160,9 +163,9 @@ function start_dependencies() {
     
     cd "$COMPOSE_DIR"
     
-    # 拉取最新镜像
-    log_info "拉取Docker镜像..."
-    $COMPOSE_CMD -f "$(basename "$COMPOSE_FILE")" pull
+    # # 拉取最新镜像
+    # log_info "拉取Docker镜像..."
+    # $COMPOSE_CMD -f "$(basename "$COMPOSE_FILE")" pull
     
     # 启动服务
     log_info "启动依赖服务..."
